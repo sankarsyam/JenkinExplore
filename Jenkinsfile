@@ -1,20 +1,24 @@
 pipeline {
-    agent any
-
+     agent {
+        docker {
+            image 'node:6-alpine' 
+            args '-p 3000:3000' 
+        }
+    }
     stages {
         stage('Verify Branch') {
             steps {
                echo "$GIT_BRANCH"
             }
         }
-         stage('Build') {
+         stage('NPM Install') {
             steps {
-               npm run build
+               sh 'npm install' 
             }
         }
          stage('Run Test') {
             steps {
-               npm run test
+               sh 'npm run test' 
             }
         }
     }
