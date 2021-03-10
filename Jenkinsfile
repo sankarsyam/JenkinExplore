@@ -16,6 +16,11 @@ pipeline {
             steps {
                 bat 'npm test'
             }
-        }      
+        }
+         stage('Strt application') {
+            steps {
+                bat 'npm start'
+            }
+        }            
     }
 }
